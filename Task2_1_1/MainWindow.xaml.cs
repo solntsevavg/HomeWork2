@@ -17,7 +17,10 @@ namespace Task2_1_1
     /// </summary>
     public partial class MainWindow : Window
     {
-       private int _result = 0;
+        //        "Счетчик кликов"
+        //Добавьте кнопку(элемент Button) и текстовый блок(элемент TextBlock).
+        //При каждом нажатии на кнопку число в текстовом блоке должно увеличиваться.
+        private int _result = 0;
 
         public MainWindow()
         {
@@ -25,12 +28,9 @@ namespace Task2_1_1
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
             _result++;
 
             Text.Text = $"{_result}";
-
         }
-    
     }
 }

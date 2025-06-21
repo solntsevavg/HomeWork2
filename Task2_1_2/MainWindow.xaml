@@ -1,0 +1,52 @@
+﻿<Window x:Class="Task2_1_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task2_1_2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Красный сигнал верх -->
+        <Ellipse x:Name="EllipseTop"
+                 Width="100"
+                 Height="100"
+                 Margin="0,20,0,0"
+                 Stroke="Black"
+                 StrokeThickness="1"
+                 VerticalAlignment="Top" 
+                 HorizontalAlignment="Center" />
+
+        <!-- Желтый сигнал середина -->
+        <Ellipse x:Name="EllipseCenter"
+                   Width="100"
+                   Height="100"
+                   Margin="0,140,0,0"
+                   Stroke="Black"
+                   StrokeThickness="1"
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Center" />
+
+        <!-- Красный сигнал низ -->
+        <Ellipse x:Name="EllipseDown"
+                   Width="100"
+                   Height="100"
+                   Margin="0,260,0,0"
+                   Stroke="Black"
+                   StrokeThickness="1"
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Center" />
+
+        <!-- Кнопка Next -->
+        <Button x:Name="ButtonNext" 
+                Content="Next" 
+                FontSize="20"
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center"
+                Margin="0,380,0,0"
+                Width="100" 
+                Height="30"
+                Click="Button_Click" />
+
+    </Grid>
+</Window>
