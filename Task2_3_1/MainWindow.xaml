@@ -1,0 +1,140 @@
+﻿<Window x:Class="Task2_3_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task2_3_1"
+        mc:Ignorable="d"
+        Title="Выбор курса" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Ввод имени имени студента -->
+        <Label Content="Имя студента:" 
+               Grid.Row="0" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2"
+               Margin="0,0,5,5"/>
+
+        <TextBox x:Name="NameTextBox" 
+                 Grid.Row="1"  
+                 Grid.Column="0" 
+                 Grid.ColumnSpan="2"
+                 Margin="0,0,5,5"/>
+
+        <!-- Выбор факультета -->
+        <Label Content="Факультет:" 
+               Grid.Row="2" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2"
+               Margin="0,0,5,5"/>
+
+        <ComboBox x:Name="FacultyComboBox" Grid.Row="3" Margin="0,0,5,5">
+            <ComboBoxItem>Программирование</ComboBoxItem>
+            <ComboBoxItem>Дизайн</ComboBoxItem>
+            <ComboBoxItem>Менеджмент</ComboBoxItem>
+        </ComboBox>
+
+        <!-- Кнопка применить -->
+        <Button x:Name="MadeButton" 
+                  Grid.Row="3" 
+                  Grid.Column="1"
+                  Content="Применить" 
+                  HorizontalAlignment="Center" 
+                  Padding="10,5"
+                  Click="MadeButton_Click"/>
+
+        <!-- Выбор курса -->
+        <Label Content="Доступные курсы" 
+               Grid.Row="4" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2"
+               Margin="0,0,5,5"/>
+
+        <ListBox x:Name="CourseListBox" 
+                 Grid.Row="5" 
+                 Grid.Column="0" 
+                 Grid.ColumnSpan="2"
+                 Margin="0,0,5,5"
+                 SelectionMode="Multiple">
+        </ListBox>
+
+        <!-- Выбор формы обучения -->
+        <Label Content="Форма обучения:" 
+                        Grid.Row="6" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2"
+                         Margin="0,0,5,5"/>
+        
+        <StackPanel 
+                   Grid.Row="7" 
+                    Grid.Column="0"
+                    Margin="0,0,5,5">
+            <RadioButton x:Name="FullForm" GroupName="Form" Content="Очно" IsChecked="True"/>
+            <RadioButton GroupName="Form" Content="Заочно"/>
+         </StackPanel>
+
+        <!-- Выбор количество часов -->
+        <Label Content="Выберите количество часов в неделю:" 
+                Grid.Row="8" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2"
+                 Margin="0,0,5,5"/>
+        <Slider  x:Name="HoursSlider" 
+                 Grid.Row="9"
+                  Grid.Column="0" 
+                 Grid.ColumnSpan="2"
+                Minimum="5" Maximum="40" 
+                Value="20" 
+                 TickFrequency="5" 
+                 TickPlacement="BottomRight" 
+                 IsSnapToTickEnabled="True"
+                Margin="0,0,5,10"/>
+
+        <!-- Отображение текущего значения -->
+        <TextBlock Grid.Row="10" 
+                   Grid.Column="0" 
+                   Grid.ColumnSpan="2"
+                  Text="{Binding ElementName=HoursSlider, Path=Value, StringFormat={}{0} часов}"
+                  HorizontalAlignment="Center" 
+                  Margin="0,0,0,10"/>
+
+        <!-- Согласие на обработку персональных данных -->
+        <CheckBox x:Name="PersonalCheckBox" 
+                  Grid.Row="11" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="2"
+                  Margin="0,0,5,5"
+                  Content="Я согласен на обработку персональных данных"/>
+
+        <!-- Кнопка записаться -->
+        <Button x:Name="SaveButton" 
+                Grid.Row="11" 
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Content="Записаться" 
+                HorizontalAlignment="Center" 
+                Padding="20,5"
+                Click="SaveButton_Click"/>
+        
+    </Grid>
+</Window>

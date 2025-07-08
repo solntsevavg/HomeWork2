@@ -23,7 +23,7 @@ namespace Task2_2_1
         {
             InitializeComponent();
         }
-        private void Close_Click(object sender, RoutedEventArgs e)
+         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
