@@ -1,0 +1,51 @@
+﻿<!--Создать файл Styles.xaml (ResourceDictionary) и определить в нём:
+        Цветовые кисти (SolidColorBrush) для разных состояний элементов:
+            Основной цвет (PrimaryColor)
+            Цвет при наведении (HoverColor)
+            Цвет при нажатии (PressedColor)
+            Цвет для отключенного состояния (DisabledColor)
+        Размеры элементов (ControlHeight, ControlWidth). Например,<sys:Double x:Key="ControlHeight">30</sys:Double>
+<sys:Double x:Key="ControlWidth">120</sys:Double>
+
+Подключить словарь ресурсов в App.xaml через MergedDictionaries.-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--Основной цвет-->
+    <SolidColorBrush x:Key="PrimaryColor" Color="Blue" x:Shared="False"/>
+    
+    <!--Цвет при наведении-->
+    <SolidColorBrush x:Key="HoverColor" Color="LightBlue"/>
+    
+    <!--Цвет при нажатии-->
+    <SolidColorBrush x:Key="PressedColor" Color="Red"/>
+
+    <!--Цвет для отключенного состояния-->
+    <SolidColorBrush x:Key="DisabledColor" Color="Gray"/>
+
+    <!-- Размеры элементов -->
+    <sys:Double x:Key="ControlHeight">30</sys:Double>
+    <sys:Double x:Key="ControlWidth">120</sys:Double>
+
+    <!--Базовый стиль для Button с общими свойствами-->
+    <Style x:Key="BaseButtonStyle">
+        <Setter Property="Button.Height" Value="{StaticResource ControlHeight}"/>
+        <Setter Property="Button.Width" Value="{StaticResource ControlWidth}"/>
+        <Setter Property="Button.Margin" Value="5"/>
+        <Setter Property="Button.Background" Value="{DynamicResource PrimaryColor}"/>
+        <Setter Property="Button.Foreground" Value="White"/>
+    </Style>
+
+    <!--Стиль для заголовка (TextBlock)-->
+    <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+    </Style>
+
+</ResourceDictionary>
+
+
+    

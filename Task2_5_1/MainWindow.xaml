@@ -1,0 +1,121 @@
+﻿<Window x:Class="Task2_5_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task2_5_1"
+        mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Панель настроек" Height="250" Width="250">
+
+    <Window.Resources>
+        <!--Расширение стилей с триггерами-->
+        <Style x:Key="InteractiveButtonStyle"
+               TargetType="Button" 
+               BasedOn="{StaticResource BaseButtonStyle}">
+
+
+            <!--В ЭТОМ ВАРИАНТЕ БЫЛО НАЛОЖЕНИЕ ЦВЕТОВ ПРИ НАЖАТИИ-->
+            <!-- Триггеры состояний -->
+            <!--<Style.Triggers>-->
+
+            <!-- При нажатии (IsPressed) — менять цвет на PressedColor. -->
+
+            <!--<Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PressedColor}" />
+                </Trigger>-->
+
+            <!--  При наведении (IsMouseOver) — менять цвет на HoverColor -->
+            <!--<MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True" />
+                        <Condition Property="IsPressed" Value="False" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="{StaticResource HoverColor}" />
+                </MultiTrigger>-->
+
+            <!--  MultiTrigger для отключенного состояния + наведения: -->
+            <!--<MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True"/>
+                        <Condition Property="IsEnabled" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="{StaticResource DisabledColor}"/>
+                </MultiTrigger>
+            </Style.Triggers>-->
+
+            <!--Помогло только решение с контейнером (много было споров с DS)-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <!-- Основной контейнер: 
+                        BorderBrush - цвет рамки, 
+                        BorderThickness - толщина рамки, 
+                        CornerRadius - скругляет углы,
+                        SnapsToDevicePixels - четкие границы-->
+                        <Border x:Name="MainBorder"
+                            Background="{StaticResource PrimaryColor}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Нажатое состояние -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="MainBorder" 
+                                    Property="Background" 
+                                    Value="{StaticResource PressedColor}"/>
+                            </Trigger>
+
+                            <!-- Наведение (только если не нажато) -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsPressed" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="MainBorder" 
+                                    Property="Background" 
+                                    Value="{StaticResource HoverColor}"/>
+                            </MultiTrigger>
+
+                            <!-- Отключенное состояние -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="MainBorder" 
+                                    Property="Background" 
+                                    Value="{StaticResource DisabledColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <StackPanel>
+        <!-- Заголовок (TextBlock) со стилем HeaderTextStyle -->
+        <TextBlock Text="Настройки приложения" 
+                   Style="{StaticResource HeaderTextStyle}"/>
+
+        <!-- Две обычные кнопки ("Сохранить", "Отменить") со стилем InteractiveButtonStyle. -->
+        <Button Content="Сохранить" Style="{StaticResource InteractiveButtonStyle}"/>
+        <Button Content="Отменить" Style="{StaticResource InteractiveButtonStyle}"/>
+
+        <!--  CheckBox для переключения состояния (c x:Name="ToggleButton").
+        Кнопка, которая становится активной только при включенном CheckBox: -->
+
+        <CheckBox x:Name="ToggleButton" 
+                      Content="Включить режим"
+                      VerticalAlignment="Center" Margin="10,10,10,10"/>
+
+        <Button Content="Специальная кнопка"
+                    Style="{StaticResource InteractiveButtonStyle}"
+                    IsEnabled="{Binding IsChecked, ElementName=ToggleButton}"/>
+
+    </StackPanel>
+
+</Window>
