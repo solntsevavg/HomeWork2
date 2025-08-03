@@ -1,0 +1,100 @@
+﻿<Window x:Class="Task2_7_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task2_7_1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <!--Прямоугольник (Rectangle) с закругленными углами (RadiusX="3", RadiusY="3").-->
+                            <Rectangle x:Name="rectangle"
+                                      Stroke="DarkGray" 
+                                        Height="30" Width="30"
+                                       RadiusX="5" RadiusY="5"
+                                       Opacity="1"/>
+
+                            <!-- Буква "X" (вместо галочки), которая появляется при состоянии IsChecked="True". -->
+                            <TextBlock x:Name="X" 
+                                      Text="X" 
+                                       FontSize="20" FontWeight="Bold"
+                                      Foreground="DarkGray"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Opacity="0"/>
+
+                            <!-- Маленький круг (Ellipse), 
+                            который появляется при состоянии IsChecked="{x:Null}" (неопределенное состояние). -->
+                            <Ellipse x:Name="ellipse"
+                                       Width="10" 
+                                       Height="10"
+                                       Fill="DarkGray"
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"
+                                       Opacity="0"/>
+
+                            <!-- Текст (ContentPresenter), отображающего подпись к CheckBox. -->
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              VerticalAlignment="Bottom"
+                                              HorizontalAlignment="Center"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+
+                            <!--Если IsChecked="True" → буква "X" становится видимой (Opacity="1").-->
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="X" Property="Opacity" Value="1"/>
+                            </Trigger>
+
+                            <!--Если IsChecked="{x:Null}" → круг (Ellipse) становится видимым (Opacity="1").-->
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter TargetName="ellipse" Property="Opacity" Value="1"/>
+                            </Trigger>
+
+                            <!--В остальных случаях (IsChecked="False") — только прямоугольник.-->
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="rectangle" Property="Opacity" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Первый — в состоянии Unchecked (IsChecked="False").-->
+        <CheckBox Content="UnChecked"
+                  Grid.Row="0" 
+                 Grid.Column="0"
+                 IsChecked="False"/>
+        <!--Второй — в состоянии Checked (IsChecked="True").-->
+        <CheckBox Content="Checked"
+                Grid.Row="0" 
+                Grid.Column="1"
+                IsChecked="True"/>
+        <!--Третий — в состоянии Indeterminate (IsChecked="{x:Null}").-->
+        <CheckBox  Content="Undeterminate"
+               Grid.Row="0" 
+               Grid.Column="2"
+               IsChecked="{x:Null}"/>
+
+    </Grid>
+</Window>
