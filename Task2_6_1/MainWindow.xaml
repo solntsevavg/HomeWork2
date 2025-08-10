@@ -32,6 +32,9 @@
                   Margin="0,15"
                   Content="Показать детали"/>
 
+        <!--Можно было эти два элемента поместить внутрь, например, StackPanel-а, тогда видимость можно задавать только у контейнера-->
+        <!--<StackPanel Visibility="{Binding ElementName=checkBox, Path=IsChecked, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">-->
+        
         <!-- Текущая длина текста -->
         <TextBlock x:Name="OutTextBox"
         Grid.Row="2"
