@@ -15,6 +15,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
                         <Grid>
+                            <!--Все хорошо выглядит, но я бы в Grid сделала бы 2 строки - верхнюю ячейку для квадрата, точки и Х, а нижнюю - для ContentPresenter-->
                             <!--Прямоугольник (Rectangle) с закругленными углами (RadiusX="3", RadiusY="3").-->
                             <Rectangle x:Name="rectangle"
                                       Stroke="DarkGray" 
@@ -57,8 +58,9 @@
                             <Trigger Property="IsChecked" Value="{x:Null}">
                                 <Setter TargetName="ellipse" Property="Opacity" Value="1"/>
                             </Trigger>
-
+                            
                             <!--В остальных случаях (IsChecked="False") — только прямоугольник.-->
+                            <!--Можно этот триггер убрать, т.к. прямоугольник всегда и так видим-->
                             <Trigger Property="IsChecked" Value="False">
                                 <Setter TargetName="rectangle" Property="Opacity" Value="1"/>
                             </Trigger>
@@ -95,6 +97,6 @@
                Grid.Row="0" 
                Grid.Column="2"
                IsChecked="{x:Null}"/>
-
+        <!--Можно добавить здесь свойство IsThreeState="True", чтобы все три состояния меняли по очереди-->
     </Grid>
 </Window>
