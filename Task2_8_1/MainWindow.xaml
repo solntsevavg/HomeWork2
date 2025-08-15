@@ -35,6 +35,9 @@
                                FontWeight="Bold"
                                Text="{Binding Cost, StringFormat='{}{0:N2} ₽'}"/>
                 </Grid>
+                <!--Можно было вот так сделать:
+
+                <TextBlock Text="{Binding ProductPrice, StringFormat={}{0:C}, ConverterCulture=ru-RU}"/>-->
             </Border>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding ProductType}" Value="Food">
@@ -52,6 +55,7 @@
             </DataTemplate.Triggers>
         </DataTemplate>
     </Window.Resources>
+    
     <StackPanel>
         
         <TextBlock Text="Список товаров" 
@@ -73,4 +77,5 @@ ItemTemplate="{StaticResource ProductDataTemplate}" >
         </ListBox>
 
     </StackPanel>
+    
 </Window>
